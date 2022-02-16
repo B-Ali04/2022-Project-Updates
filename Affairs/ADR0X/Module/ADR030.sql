@@ -1,0 +1,6 @@
+exists(
+       select *
+       from SFRSTCR SFRSTCR
+       where SFRSTCR.SFRSTCR_PIDM = SPRIDEN.SPRIDEN_PIDM
+       and SFRSTCR.SFRSTCR_TERM_CODE = STVTERM.STVTERM_CODE
+       and SFRSTCR.SFRSTCR_RSTS_CODE in ('RE','RW'))
