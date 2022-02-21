@@ -56,7 +56,13 @@ from
          and SRVYSTU_PRETERM_CLASS_YR_CODE not in ('BG')
          and SRVYSTU_POSTERM_CLASS_YR_CODE not in ('BG')
          and SRVYSTU_CURRIC_1_MAJOR_CODE not in ('UNDC','SUS','VIS', '0000', 'EHS')
-
+    left outer join SGRVETN SGRVETN on SGRVETN.SGRVETN_pidm = spriden.spriden_pidm
+         and SGRVETN.SGRVETN_TERM_CODE_VA = (
+             select max(SGRVETN_TERM_CODE_VA) 
+             from SGRVETN SGRVETN2
+             where SGRVETN.SGRVETN_PIDM = SGRVETN2.SGRVETN_PIDM
+        )
+        
 where
     SPRIDEN.SPRIDEN_NTYP_CODE is null
     and SPRIDEN.SPRIDEN_CHANGE_IND is null
