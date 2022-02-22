@@ -1,4 +1,13 @@
+/*
+Friendly reminder just as with anything else we do here, this is a work in progress okay?
+At no point will this ever be perfect thats just the nature of things. the closest thing we can do
+is error free. say it with me, the closest thing. 
+
+Let go do the real thing.
+
+*/
 Select
+/*[report reuioremnts: student name, major, deg prog, grad date, 'if graduated', gpa(i/ii)]*/
     SPRIDEN.SPRIDEN_ID BANNER_ID,
     SPRIDEN.SPRIDEN_LAST_NAME LAST_NAME,
     SPRIDEN.SPRIDEN_FIRST_NAME FIRST_NAME,
