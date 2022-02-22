@@ -7,7 +7,7 @@ Select
 --    SGBSTDN.SGBSTDN_LEVL_CODE Student_Level,
     SHRLGPA.SHRLGPA_GPA_HOURS Cumulative_HP,
     trunc(SHRLGPA.SHRLGPA_GPA,3) Cumulative_GPA,
-    SFRWDRL_ESTS_CODE WITHDREW,
+    --SFRWDRL_ESTS_CODE WITHDREW,
     STVCLAS.STVCLAS_DESC Student_Class,
     STVDEGC.STVDEGC_CODE Degree_Program,
     STVDEPT.STVDEPT_DESC Department, 
@@ -17,13 +17,17 @@ Select
     case
       when (SHRDGMR.SHRDGMR_GRAD_DATE is not null and SHRDGMR.SHRDGMR_DEGS_CODE = 'GR') then '+ '|| to_char(SHRDGMR.SHRDGMR_GRAD_DATE, 'MM/DD/yyyy')
       when SHRDGMR.SHRDGMR_GRAD_DATE is not null and (exists(select * from SFRWDRL where  SFRWDRL.SFRWDRL_PIDM = SPRIDEN.SPRIDEN_PIDM and  SFRWDRL.SFRWDRL_ESTS_CODE in ('WS', 'AW','MW') )) then ('* '|| to_char(SHRDGMR.SHRDGMR_GRAD_DATE, 'MM/DD/YYYY'))
+      when (exists(select * from SFRWDRL where SFRWDRL.SFRWDRL_PIDM = SPRIDEN.SPRIDEN_PIDM and SFRWDRL.SFRWDRL_ESTS_CODE in ('WS', 'AW','MW'))) 
+      and (not exists(select * from SHRDGMR where SHRDGMR.SHRDGMR_PIDM = SPRIDEN_PIDM)) then '* '||to_char(SFRWDRL.SFRWDRL_EFF_WDRL_DATE, 'MM/DD/YYYY')
         else to_char(SGBSTDN.SGBSTDN_EXP_GRAD_DATE, 'MM/DD/YYYY')
-      end GRAD_DATE,
+      end GRAD_DATE
+/*
       case
     when (exists(select * from SFRWDRL where SFRWDRL.SFRWDRL_PIDM = SPRIDEN.SPRIDEN_PIDM and SFRWDRL.SFRWDRL_ESTS_CODE in ('WS', 'AW','MW'))) 
-    and (not exists(select * from SHRDGMR where SHRDGMR.SHRDGMR_PIDM = SPRIDEN_PIDM)) then 'Withdrew ' || SFRWDRL.SFRWDRL_ESTS_DATE
+    and (not exists(select * from SHRDGMR where SHRDGMR.SHRDGMR_PIDM = SPRIDEN_PIDM)) then SFRWDRL.SFRWDRL_EFF_WDRL_DATE
     else null
-      end gama
+      end Withdrawl_Date
+      */
      
 --    case when
 
@@ -103,4 +107,3 @@ outputs:
 - expected.actual grad dates
 - cummulative hours
 */
-
