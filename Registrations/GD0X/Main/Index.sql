@@ -14,16 +14,17 @@ Select
       when ((SHRLGPA.SHRLGPA_GPA > 3.334) and (SHRLGPA.SHRLGPA_GPA < 3.829)) then 'Magna Cum Laude'
       when ((SHRLGPA.SHRLGPA_GPA > 3.830)) then 'Summa Cum Laude'
         else ''
-    end Superlatives,
+    end Academic_Honors,
     case
-         when SHRTTRM.SHRTTRM_ASTD_CODE_DL in ('PR','PL') then 'Presidents List'
          when SHRTTRM.SHRTTRM_ASTD_CODE_DL = 'DL' then 'Deans List'
+         when SHRTTRM.SHRTTRM_ASTD_CODE_DL in ('PL') then 'Presidents List'
+         when SHRTTRM.SHRTTRM_ASTD_CODE_DL in ('PR') then 'Presidents List (4.000 List)'
            else ''
     end as Deans_List,
     case
         when SGRSATT.SGRSATT_ATTS_CODE in ('LHON','UHON', 'HONR') then 'Y'
         else 'N'
-    end Honors,
+    end Honors_Student,
     SHRDGMR.SHRDGMR_GRAD_DATE Grad_Date,
     GOREMAL.GOREMAL_EMAIL_ADDRESS Email_Address
 
@@ -35,7 +36,6 @@ from
     join SPBPERS SPBPERS on SPBPERS.SPBPERS_pidm = SPRIDEN.SPRIDEN_PIDM
 
     join GOREMAL GOREMAL on GOREMAL.GOREMAL_PIDM = SPRIDEN.SPRIDEN_PIDM
-        and GOREMAL.GOREMAL_PREFERRED_IND = 'Y'
         and GOREMAL.GOREMAL_EMAL_CODE = 'SU'
         and GOREMAL.GOREMAL_STATUS_IND = 'A'
 
