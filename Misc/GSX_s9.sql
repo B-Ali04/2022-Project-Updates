@@ -1,3 +1,7 @@
+/*
+* by department -> program -> class -> alphanumeric name
+*/
+
 select
     SPRIDEN.SPRIDEN_ID BANNER_ID,
     SPRIDEN_LAST_NAME Last_Name,
