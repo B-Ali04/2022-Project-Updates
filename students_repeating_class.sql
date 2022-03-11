@@ -1,5 +1,4 @@
 select
-
     SPRIDEN_LAST_NAME Last_Name,
     SPRIDEN_FIRST_NAME First_Name,
     GORADID.GORADID_ADDITIONAL_ID SUID,
@@ -10,7 +9,6 @@ select
     ssbsect1.ssbsect_Term_code c1,
     ssbsect.ssbsect_Term_code c2,
     sfrstcr1.sfrstcr_grde_code
-    
     
 from
     SPRIDEN SPRIDEN
@@ -40,9 +38,6 @@ from
     join STVDEGC STVDEGC on STVDEGC.STVDEGC_CODE = SGBSTDN.SGBSTDN_DEGC_CODE_1
     join STVCLAS STVCLAS on STVCLAS.STVCLAS_CODE = f_class_calc_fnc(SGBSTDN.SGBSTDN_PIDM,SGBSTDN.SGBSTDN_LEVL_CODE, STVTERM.STVTERM_CODE)
 
-
-
-
     join SFRSTCR SFRSTCR1 on SFRSTCR1.SFRSTCR_PIDM = SPRIDEN.SPRIDEN_PIDM
         and SFRSTCR1.SFRSTCR_RSTS_CODE in ('RW', 'RE')
         and SFRSTCR1.SFRSTCR_TERM_CODE = STVTERM.STVTERM_CODE
@@ -53,6 +48,7 @@ from
     
     left outer join ssbsect ssbsect1 on ssbsect1.ssbsect_term_code != ssbsect.ssbsect_term_code and SSBSECT1.SSBSECT_SICAS_CAMP_COURSE_ID = SSBSECT.SSBSECT_SICAS_CAMP_COURSE_ID
          and SSBSECT1.SSBSECT_CRN = SFRSTCR.SFRSTCR_CRN
+         
 where
     SPRIDEN.SPRIDEN_NTYP_CODE is null
     and SPRIDEN.SPRIDEN_CHANGE_IND is null
