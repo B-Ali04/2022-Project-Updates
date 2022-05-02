@@ -124,7 +124,7 @@ from
                                          and atrm.rpratrm_awst_code in ('A', 'WA', 'MA'))
 
     left outer join rprawrd awrd on awrd.rprawrd_pidm = iden.spriden_pidm 
-         and awrd.rprawrd_aidy_code = term.stvterm_fa_proc_yr
+         and awrd.rprawrd_aidy_code = atrm.rpratrm_aidy_code
          and awrd.rprawrd_fund_code = atrm.rpratrm_fund_code
          and awrd.rprawrd_surrogate_id = (select min(rprawrd_surrogate_id)             /* produces first record */
                                          from rprawrd awrd1
