@@ -67,10 +67,10 @@ from
          and stcr.sfrstcr_term_code = term.stvterm_code
 
     left outer join ssbsect sect on sect.ssbsect_crn = stcr.sfrstcr_crn
-         and sect.ssbsect_term_code = term.stvterm_code
+         and sect.ssbsect_term_code = stcr.sfrstcr_term_code
      
     left outer join shrtckn tckn on tckn.shrtckn_pidm = iden.spriden_pidm
-         and tckn.shrtckn_term_code = term.stvterm_code
+         and tckn.shrtckn_term_code = stcr.sfrstcr_term_code
          and tckn.shrtckn_crn = stcr.sfrstcr_crn
          
     left outer join scbcrse crse on crse.scbcrse_subj_code = sect.ssbsect_subj_code
@@ -89,7 +89,7 @@ from
          and ttrm.shrttrm_term_code = term.stvterm_code
      
     left outer join sirasgn asgn on asgn.sirasgn_pidm = iden.spriden_pidm 
-         and asgn.sirasgn_term_code = term.stvterm_code     
+         and asgn.sirasgn_term_code = stcr.sfrstcr_term_code  
 
            -- Degreeworks
     left outer join sfrwdrl wdrl on wdrl.sfrwdrl_pidm = iden.spriden_pidm
@@ -135,10 +135,8 @@ from
          and stat.rorstat_aidy_code = term.stvterm_fa_proc_yr
 --Student Billing (Do not use simulatenously with Student Fiances)
 /*
-
     left outer join trvybill bill on bill.trvybill_pidm = iden.spriden_pidm
          and bill.trvybill_term_code = term.stvterm_code
-
     left outer join sprhold hold on hold.sprhold_pidm = iden.spriden_pidm
          and hold.sprhold_from_date >= term.stvterm_start_date
     */
